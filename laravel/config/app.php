@@ -192,9 +192,9 @@ return [
     |--------------------------------------------------------------------------
     */
     // Route
-    'admin_dashboard_route' => 'tts/admin/trang-chu',
-    'admin_logout_route' => 'tts/admin/logout',
-    'admin_login_route' => 'tts/admin/login',
+    'admin_dashboard_route' => 'spn/admin/trang-chu',
+    'admin_logout_route' => 'spn/admin/logout',
+    'admin_login_route' => 'spn/admin/login',
     'client_dashboard_route'  => 'trang-chu',
 
     // account
