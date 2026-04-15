@@ -1,0 +1,76 @@
+/* About page — override inline styles from CMS/WYSIWYG content */
+.about-story-content {
+    // color: #444 !important;
+    font-family: $font-body !important;
+    font-size: 1rem !important;
+    line-height: 1.8 !important;
+
+    * {
+        font-family: $font-body !important;
+        font-size: inherit !important;
+        line-height: inherit !important;
+        // color: inherit !important;
+        background-color: transparent !important;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: $font-heading !important;
+        // color: #222 !important;
+        margin-top: 1.2em;
+        margin-bottom: 0.6em;
+    }
+
+    h1 { font-size: 1.75rem !important; }
+    h2 { font-size: 1.5rem !important; }
+    h3 { font-size: 1.25rem !important; }
+
+    p {
+        margin-bottom: 1em;
+    }
+
+    img {
+        max-width: 100%;
+        height: auto !important;
+        border-radius: 4px;
+    }
+
+    a {
+        color: $green-main-color !important;
+        text-decoration: underline;
+    }
+
+    ul, ol {
+        padding-left: 1.5em;
+        margin-bottom: 1em;
+    }
+
+    table {
+        width: 100% !important;
+        border-collapse: collapse;
+
+        td, th {
+            padding: 8px !important;
+            border: 1px solid #ddd !important;
+        }
+    }
+
+    .two-col {
+        display: flex;
+        gap: 20px;
+        margin: 16px 0;
+
+        .col-left, .col-right {
+            flex: 1;
+            min-width: 0;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        @media (max-width: 768px) {
+            flex-direction: column;
+        }
+    }
+}

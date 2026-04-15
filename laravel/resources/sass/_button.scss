@@ -1,0 +1,25 @@
+.main-btn{
+    background-color: $button-bg;
+    border: $button-bg;
+    color: $text-color;
+    font-family: $font-heading;
+    font-weight: 700;
+}
+
+.main-btn:hover{
+    background-color: $button-hover-bg;
+    color: $text-hover-color;
+}
+
+.main-btn:active{
+    background-color: $button-hover-bg !important;
+    color: $text-hover-color !important;
+    opacity: 0.7;
+}
+
+@media (max-width: 576px) {
+    .main-btn {
+        padding: 6px 20px !important;
+        font-size: 0.85rem;
+    }
+}

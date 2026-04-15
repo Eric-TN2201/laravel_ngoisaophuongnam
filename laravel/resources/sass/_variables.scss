@@ -1,0 +1,39 @@
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-serif: 'Nunito', sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.6;
+
+$font-body: 'Inter', sans-serif;
+$font-heading: 'Montserrat', sans-serif;
+
+$color-text: #222;
+$color-primary: #008453;
+$color-price: #d32f2f;
+
+
+// background
+$green-main-color: #008453;
+$yellow-main-color: #f5c002;
+$green-color: #00ff00;
+$blue-color: #2962ff;
+$white-color: #fff;
+
+$nav-bg:$green-main-color;
+$hover-bg: $yellow-main-color;
+$call-bg: $green-color;
+$zalo-bg: $blue-color;
+$button-bg: $green-main-color;
+$button-hover-bg: $yellow-main-color;
+$text-color: $white-color;
+$text-hover-color: #333;
+// desktop
+// $nav-text: $color-text;
+$nav-text: $color-text;
+$nav-text-hover: $color-text;
+
+// mobile
+$nav-text-mobile: $color-text;
+$nav-text-hover-mobile: $yellow-main-color;

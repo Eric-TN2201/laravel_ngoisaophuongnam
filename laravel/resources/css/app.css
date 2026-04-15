@@ -1,0 +1,33 @@
+.container-fix{
+    max-width: 1250px;
+}
+
+.sidebar-divider {
+    border-top: 1px solid rgba(255,255,255,0.1);
+    margin: 0.25rem 0;
+}
+#users-table {
+    table-layout: fixed;
+    width: 100%;
+}
+#users-table td, #users-table th {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -0.25rem;
+    display: none;
+}
+
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+}
+

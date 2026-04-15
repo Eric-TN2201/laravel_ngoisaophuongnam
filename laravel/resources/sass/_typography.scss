@@ -1,0 +1,75 @@
+body {
+    font-family: $font-body;
+    font-size: $font-size-base;
+    line-height: $line-height-base;
+    color: $color-text;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: $font-heading;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+} // 40px
+h2 {
+    font-size: 2rem;
+} // 32px
+h3 {
+    font-size: 1.5rem;
+} // 24px
+h4 {
+    font-size: 1.25rem;
+}
+h5 {
+    font-size: 1.125rem;
+}
+h6 {
+    font-size: 1rem;
+}
+
+// card
+.hover-card {
+    .product-title {
+        font-size: 1.125rem;
+        font-weight: 600;
+    }
+
+    .product-category {
+        font-size: 0.875rem;
+        color: #777;
+    }
+
+    .price {
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: $color-price;
+    }
+
+    .btn {
+        font-weight: 600;
+    }
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+    h2 {
+        font-size: 1.75rem;
+    }
+    h5 {
+        font-size: 1rem;
+    }
+}

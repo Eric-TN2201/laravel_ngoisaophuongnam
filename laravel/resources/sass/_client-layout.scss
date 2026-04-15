@@ -1,0 +1,216 @@
+// Variables
+
+
+/* Sticky nav header */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1030;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+// content
+.container-fix {
+    max-width: 1080px;
+    margin: auto;
+}
+
+
+h2.h4.title-line {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* space between text and lines */
+}
+
+h2.h4.title-line::before,
+h2.h4.title-line::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.sidebar-divider {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0.25rem 0;
+}
+
+.mainBannerSwiper {
+    height: 600px;
+}
+
+.content-wrapper > .content {
+    padding: 0.2rem 0.5rem !important;
+}
+
+
+/* footer styling */
+footer a {
+    transition: color 0.3s ease;
+}
+
+footer a:hover {
+    color: #ffc107 !important;
+}
+
+#client-layout a {
+    text-decoration: none !important;
+}
+
+#phone-contact,
+#zalo-contact {
+    position: relative;
+    overflow: visible;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 48px;
+}
+
+#zalo-contact::after,
+#phone-contact::after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+
+    /* animation tự chạy */
+    animation: ripple 1.2s ease-out infinite;
+}
+
+#zalo-contact::after,
+#zalo-contact {
+    background: $zalo-bg;
+}
+
+#phone-contact::after,
+#phone-contact {
+    background: $call-bg;
+}
+
+@keyframes ripple {
+    0% {
+        transform: translate(-50%, -50%) scale(2);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(4);
+        opacity: 0;
+    }
+}
+
+#scrollToTopBtn {
+    display: none;
+    position: fixed;
+    bottom: 32px;
+    right: 32px;
+    z-index: 1040;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    width: 48px;
+    height: 48px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    line-height: 48px;
+    text-decoration: none;
+}
+
+#contactBtns {
+    position: fixed;
+    bottom: 50%;
+    right: 32px;
+    z-index: 1040;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    align-items: flex-end;
+}
+
+/* Base style */
+.swiper-button-next,
+.swiper-button-prev {
+  width: 44px !important;
+  height: 44px !important;
+  background: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.3s ease;
+}
+
+/* Ẩn icon mặc định to */
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 16px !important;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Hover effect */
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: #f5f5f5;
+  transform: scale(1.05);
+}
+
+/* Optional: position chỉnh lại nếu cần */
+.swiper-button-prev {
+  left: 6px !important;
+}
+
+.swiper-button-next {
+  right: 6px !important;
+}
+
+section:not(.banner) {
+    padding: 1rem;
+}
+
+@media (max-width: 768px) {
+    html {
+        font-size: 15px;
+    }
+
+    h1 {
+        font-size: 2rem; /* 32px */
+    }
+
+    h2 {
+        font-size: 1.75rem; /* 28px */
+    }
+
+    h3 {
+        font-size: 1.375rem; /* 22px */
+    }
+}
+
+/* mobile */
+@media (max-width: 991px) {
+    /* Move contact gr to bottom */
+    #contactBtns {
+        bottom: 100px;
+    }
+
+    section:not(.banner) {
+        padding: 1rem 1.5rem !important;
+    }
+}

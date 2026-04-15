@@ -1,0 +1,206 @@
+/* Active state for nav and dropdown items */
+.navbar-nav .active {
+    background-color: $hover-bg;
+    color: $nav-text-hover !important;
+    // font-weight: bold;
+    // border-radius: 0.5rem;
+    // box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.dropdown-menu .dropdown-item {
+    // color: #fff !important;
+    // font-weight: bold;
+    // font-size: 1rem;
+    padding: 0.75rem 1.5rem;
+    transition:
+        background 0.3s,
+        color 0.3s;
+}
+
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    background-color: $hover-bg;
+    color: $nav-text-hover;
+    // border-radius: 0.5rem;
+}
+
+.navbar {
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Set main navbar background color */
+.navbar,
+.dropdown-menu {
+    // background-color: $nav-bg !important;
+    padding: 0;
+}
+
+/* Style navbar links */
+.navbar .navbar-nav .nav-link {
+    color: $nav-text;
+    // font-weight: bold;
+    // font-size: 1rem;
+    padding: 2rem 1.5rem;
+    // // border-radius: 0.5rem;
+    transition:
+        background 0.3s,
+        color 0.3s;
+}
+
+/* Hover effect for navbar links */
+.navbar .navbar-nav .nav-link:hover,
+.navbar .navbar-nav .nav-link:focus {
+    background-color: $hover-bg;
+    color: $nav-text-hover;
+    // border-radius: 0.5rem;
+}
+
+/* show submenu on hover */
+.navbar .dropdown:hover > .dropdown-menu,
+.dropdown-submenu:hover > .dropdown-menu {
+    display: block;
+    border-radius: 0;
+}
+
+/* dropdown item hover background */
+.dropdown-menu .dropdown-item:hover,
+.navbar .nav-link:hover {
+    // background-color: rgba(0, 0, 0, 0.05);
+    // border-radius: 0.25rem;
+}
+
+/* dropdown item hover background */
+.dropdown-menu .dropdown-item:hover {
+    background-color: $hover-bg;
+    color: $nav-text-hover;
+}
+
+/* submenu styling */
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu > .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -0.05rem;
+    display: none;
+}
+
+/* submenu item hover background */
+.dropdown-submenu:hover > a {
+    background-color: $hover-bg;
+    color: $nav-text-hover;
+}
+
+/* dropdown-toggle arrow styling and rotation */
+.dropdown-toggle::after {
+    transition: transform 0.3s ease;
+    transform: rotate(-90deg);
+}
+
+/* when dropdown is shown, arrow points down */
+.dropdown-toggle[aria-expanded="true"]::after {
+    transform: rotate(0deg);
+}
+
+.logo {
+    height: 85px;
+    width: 100px;
+}
+
+/* desktop: rotate arrow on hover */
+@media (min-width: 992px) {
+    .dropdown:hover > span > .dropdown-toggle::after,
+    .dropdown-submenu:hover > .dropdown-toggle::after {
+        transform: rotate(0deg);
+    }
+}
+
+/* mobile: hide dropdown menu by default, show on .show class */
+@media (max-width: 991px) {
+    .logo {
+        height: 80px;
+        width: 90px;
+    }
+
+    .navbar-nav .active {
+        background-color: unset;
+        color: $nav-text-hover-mobile !important;
+    }
+
+    .navbar-nav .active span {
+        position: relative;
+    }
+
+    .navbar-nav .active span::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -3px;
+        width: 100%;
+        height: 2px;
+        background-color: $nav-text-hover-mobile;
+    }
+
+    .navbar {
+        // padding: ;
+    }
+    .navbar .navbar-nav .nav-link {
+        padding: 0.8rem 0.4rem;
+    }
+
+    /* Hover effect for navbar links */
+    .navbar .navbar-nav .nav-link:hover,
+    .navbar .navbar-nav .nav-link:focus,
+    .dropdown-menu .dropdown-item:hover,
+    .dropdown-menu .dropdown-item:focus {
+        background-color: unset;
+        color: #111 !important;
+        // border-radius: 0.5rem;
+    }
+
+    .dropdown > .dropdown-menu {
+        display: none !important;
+    }
+
+    .dropdown > .dropdown-menu.show {
+        display: block !important;
+        border: none;
+    }
+
+    /* Hide all submenus on mobile/tablet */
+    .dropdown-submenu > .dropdown-menu,
+    .dropdown-submenu > .dropdown-menu.show {
+        display: none !important;
+    }
+
+    /* Hide arrow on mobile/tablet for category menu */
+    .dropdown-menu .dropdown-toggle::after {
+        display: none !important;
+    }
+
+    .dropdown-submenu > .dropdown-toggle.show::after {
+        transform: rotate(0deg);
+    }
+
+    .dropdown-submenu > .dropdown-menu {
+        position: static;
+        float: none;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: none !important;
+        box-shadow: none;
+        display: none !important;
+        background-color: #f8f9fa;
+    }
+
+    .dropdown-submenu > .dropdown-menu.show {
+        display: block !important;
+    }
+
+    .dropdown-submenu > .dropdown-menu .dropdown-item {
+        margin-left: 1rem;
+    }
+}
