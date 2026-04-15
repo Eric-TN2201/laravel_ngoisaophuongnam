@@ -3,7 +3,7 @@
 @section('title', 'Tin tức')
 
 @section('content')
-    <section class="mb-3">
+    <section class="mb-3" style="min-height: 60vh;">
         <div class="container-fix">
             {{-- Breadcrumb --}}
             <nav aria-label="breadcrumb" class="mb-3">

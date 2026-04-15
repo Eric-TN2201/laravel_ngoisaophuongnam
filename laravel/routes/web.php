@@ -57,7 +57,7 @@ Route::prefix('dich-vu')->name('service.')->group(function () {
     Route::get('/{service}', [ClientServiceController::class, 'show'])->name('show');
 });
 
-Route::prefix('/tts/admin')->name('admin.')->group(function () {
+Route::prefix('/spn/admin')->name('admin.')->group(function () {
     Auth::routes();
 
     Route::middleware('admin.auth')->group(function () {

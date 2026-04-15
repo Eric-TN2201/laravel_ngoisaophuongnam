@@ -14,7 +14,7 @@ return [
     |
     */
 
-    'title' => 'BVTV Long An',
+    'title' => 'Sao Phương Nam',
     'title_prefix' => '',
     'title_postfix' => '',
 
@@ -63,7 +63,7 @@ return [
     |
     */
 
-    'logo' => '<b>BVTV</b> Long An',
+    'logo' => '<b>Sao Phương Nam</b>',
     // 'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
     'logo_img' => 'images/common/logo.png',
     'logo_img_class' => 'brand-image bg-white rounded',
