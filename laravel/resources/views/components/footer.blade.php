@@ -25,7 +25,7 @@
                 <div class="footer-section">
                     <h5 class="mb-3">Danh mục sản phẩm</h5>
                     <ul class="list-unstyled">
-                        @foreach ($nav_categories as $cat)
+                        @foreach ($nav_categories->take(5) as $cat)
                             <li class="mb-2">
                                 <a href="{{ route('product.category', ['category' => $cat->slug]) }}"
                                     class="text-light text-decoration-none" style="transition: color 0.3s;">
@@ -33,6 +33,14 @@
                                 </a>
                             </li>
                         @endforeach
+                        @if ($nav_categories->count() > 5)
+                            <li class="mb-2">
+                                <a href="{{ route('product.index') }}"
+                                    class="text-light text-decoration-none font-weight-bold" style="transition: color 0.3s;">
+                                    Xem thêm &raquo;
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </div>

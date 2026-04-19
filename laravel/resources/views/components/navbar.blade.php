@@ -30,34 +30,20 @@
                             <span>Xem thêm</span>
                         </a>
                     </span>
-                    <ul class="dropdown-menu" aria-labelledby="productsDropdown">
-                        @foreach ($nav_categories as $cat)
-                            <li class="dropdown-submenu">
-                                <a class="dropdown-item{{ $cat->subCategories->count() ? ' dropdown-toggle' : '' }}{{ request()->routeIs('product.category') && request('category') === $cat->slug && !request('subCategory') ? ' active' : '' }}"
-                                    href="{{ route('product.category', ['category' => $cat->slug]) }}"
-                                    @if ($cat->subCategories->count()) role="button" aria-haspopup="true" aria-expanded="false" @endif>
-                                    <span>{{ $cat->name }}</span>
-                                </a>
-
-                                @if ($cat->subCategories->count())
-                                    <ul class="dropdown-menu submenu-mobile">
-                                        @foreach ($cat->subCategories as $sub)
-                                            <li>
-                                                <a class="dropdown-item{{ request()->routeIs('product.category') && request('category') === $cat->slug && request('subCategory') === $sub->slug ? ' active' : '' }}"
-                                                    href="{{ route('product.category', [
-                                                        'category' => $cat->slug,
-                                                        'subCategory' => $sub->slug,
-                                                    ]) }}">
-                                                    <span>{{ $sub->name }}</span>
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                @endif
-                            </li>
+                    <div class="dropdown-menu{{ $nav_categories->count() > 10 ? ' dropdown-menu-multi' : '' }}" aria-labelledby="productsDropdown">
+                        @foreach ($nav_categories->chunk(ceil($nav_categories->count() / 2)) as $chunk)
+                            <ul class="list-unstyled dropdown-menu-col mb-0">
+                                @foreach ($chunk as $cat)
+                                    <li>
+                                        <a class="dropdown-item{{ request()->routeIs('product.category') && request('category') === $cat->slug ? ' active' : '' }}"
+                                            href="{{ route('product.category', ['category' => $cat->slug]) }}">
+                                            <span>{{ $cat->name }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            </ul>
                         @endforeach
-
-                    </ul>
+                    </div>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link{{ request()->routeIs('news.*') ? ' active' : '' }}"
