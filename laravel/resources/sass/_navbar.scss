@@ -10,7 +10,7 @@
 .dropdown-menu .dropdown-item {
     // color: #fff !important;
     // font-weight: bold;
-    font-size: 0.875rem;
+    font-size: 0.9rem;
     padding: 0.6rem 1.4rem;
     transition:
         background 0.3s,
@@ -87,7 +87,8 @@
     flex-direction: row;
     min-width: auto;
     padding: 0;
-    left: 0;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .dropdown-menu-col {
