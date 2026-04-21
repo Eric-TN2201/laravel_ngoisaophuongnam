@@ -93,10 +93,6 @@
     flex: 1;
     min-width: 300px;
     padding: 0.5rem 0;
-
-    & + .dropdown-menu-col {
-        border-left: 1px solid rgba(0, 0, 0, 0.1);
-    }
 }
 
 .navbar .dropdown:hover > .dropdown-menu-multi {
@@ -148,14 +144,14 @@
         left: 50%;
         transform: translateX(-50%);
     }
+
+    .dropdown-menu-col + .dropdown-menu-col {
+        border-left: 1px solid rgba(0, 0, 0, 0.08);
+    }
 }
 
 /* mobile: hide dropdown menu by default, show on .show class */
 @media (max-width: 991px) {
-    body.dropdown-open {
-        overflow-y: hidden;
-    }
-
     .logo {
         height: 70px;
         width: 90px;
