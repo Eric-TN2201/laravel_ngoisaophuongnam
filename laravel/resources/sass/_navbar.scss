@@ -169,6 +169,35 @@
         top: 0;
         bottom: auto;
     }
+    .dropdown-menu.submenu-blur-active {
+        position: relative;
+        isolation: isolate;
+    }
+
+    .dropdown-menu.submenu-blur-active::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.28);
+        backdrop-filter: blur(1.4px);
+        -webkit-backdrop-filter: blur(1.4px);
+        pointer-events: none;
+        z-index: 1;
+    }
+
+    .dropdown-menu.submenu-blur-active > .dropdown-menu-col > li > .dropdown-item {
+        filter: blur(.8px);
+        opacity: 0.9;
+        transition:
+            opacity 0.2s ease;
+    }
+
+    .dropdown-menu.submenu-blur-active > .dropdown-menu-col > li.submenu-active > .dropdown-item {
+        filter: none;
+        opacity: 1;
+        position: relative;
+        z-index: 2;
+    }
 }
 
 /* mobile: hide dropdown menu by default, show on .show class */

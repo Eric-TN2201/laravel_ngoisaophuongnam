@@ -168,15 +168,49 @@
         submenus.forEach(function(item) {
             item.addEventListener('mouseenter', function() {
                 setSubmenuDirection(item);
+                const parentMenu = item.closest('.dropdown-menu');
+                if (parentMenu) {
+                    parentMenu.classList.add('submenu-blur-active');
+                }
+                item.classList.add('submenu-active');
+            });
+            item.addEventListener('mouseleave', function() {
+                const parentMenu = item.closest('.dropdown-menu');
+                if (parentMenu) {
+                    parentMenu.classList.remove('submenu-blur-active');
+                }
+                item.classList.remove('submenu-active');
             });
             item.addEventListener('focusin', function() {
                 setSubmenuDirection(item);
+                const parentMenu = item.closest('.dropdown-menu');
+                if (parentMenu) {
+                    parentMenu.classList.add('submenu-blur-active');
+                }
+                item.classList.add('submenu-active');
+            });
+            item.addEventListener('focusout', function() {
+                const parentMenu = item.closest('.dropdown-menu');
+                if (!parentMenu) return;
+                setTimeout(function() {
+                    if (!item.contains(document.activeElement)) {
+                        parentMenu.classList.remove('submenu-blur-active');
+                        item.classList.remove('submenu-active');
+                    }
+                }, 0);
             });
         });
 
         window.addEventListener('resize', function() {
             submenus.forEach(function(item) {
                 setSubmenuDirection(item);
+                if (window.innerWidth < 992) {
+                    item.classList.remove('submenu-active');
+                    const parentMenu = item.closest('.dropdown-menu');
+                    if (parentMenu) {
+                        parentMenu.classList.remove('submenu-blur-active');
+                    }
+                }
             });
         });
     });
