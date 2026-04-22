@@ -75,7 +75,7 @@ resources/views/
 - **Giới thiệu**: Lời giới thiệu công ty
 - **Liên hệ**: Thông tin liên hệ, bản đồ Google Maps
 
-### Quản trị (`/tts/admin`)
+### Quản trị (`/spn/admin`)
 - Quản lý sản phẩm, danh mục, danh mục phụ
 - Quản lý tin tức / sự kiện
 - Quản lý dịch vụ

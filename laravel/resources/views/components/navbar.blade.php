@@ -34,12 +34,33 @@
                         @foreach ($nav_categories->chunk(ceil($nav_categories->count() / 2)) as $chunk)
                             <ul class="list-unstyled dropdown-menu-col mb-0">
                                 @foreach ($chunk as $cat)
-                                    <li>
-                                        <a class="dropdown-item{{ request()->routeIs('product.category') && request('category') === $cat->slug ? ' active' : '' }}"
-                                            href="{{ route('product.category', ['category' => $cat->slug]) }}">
-                                            <span>{{ $cat->name }}</span>
-                                        </a>
-                                    </li>
+                                    @php
+                                        $activeSubCategories = $cat->subCategories->where('status', 1);
+                                    @endphp
+
+                                    @if ($activeSubCategories->isNotEmpty())
+                                        <li class="dropdown-submenu">
+                                            <a class="dropdown-item dropdown-toggle{{ request()->routeIs('product.category') && request()->route('category') === $cat->slug ? ' active' : '' }}"
+                                                href="{{ route('product.category', ['category' => $cat->slug]) }}">
+                                                <span>{{ $cat->name }}</span>
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                @foreach ($activeSubCategories as $sub)
+                                                    <a class="dropdown-item{{ request()->routeIs('product.category') && request()->route('category') === $cat->slug && request()->route('subCategory') === $sub->slug ? ' active' : '' }}"
+                                                        href="{{ route('product.category', ['category' => $cat->slug, 'subCategory' => $sub->slug]) }}">
+                                                        <span>{{ $sub->name }}</span>
+                                                    </a>
+                                                @endforeach
+                                            </div>
+                                        </li>
+                                    @else
+                                        <li>
+                                            <a class="dropdown-item{{ request()->routeIs('product.category') && request()->route('category') === $cat->slug ? ' active' : '' }}"
+                                                href="{{ route('product.category', ['category' => $cat->slug]) }}">
+                                                <span>{{ $cat->name }}</span>
+                                            </a>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         @endforeach

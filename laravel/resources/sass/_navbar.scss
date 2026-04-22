@@ -66,6 +66,7 @@
 .dropdown-submenu:hover > .dropdown-menu {
     display: block;
     border-radius: 0;
+    min-width: 300px;
 }
 
 /* dropdown item hover background */
