@@ -123,6 +123,62 @@
                 }
             }
         });
+
+        // On desktop, flip submenus left/up if they overflow viewport bounds
+        const submenus = document.querySelectorAll('.dropdown-submenu');
+        const setSubmenuDirection = function(item) {
+            if (window.innerWidth < 992) {
+                item.classList.remove('open-left', 'open-right', 'open-up', 'open-down');
+                return;
+            }
+
+            const submenu = item.querySelector(':scope > .dropdown-menu');
+            if (!submenu) return;
+
+            item.classList.remove('open-left', 'open-right', 'open-up', 'open-down');
+            item.classList.add('open-right', 'open-down');
+
+            const previousDisplay = submenu.style.display;
+            const previousVisibility = submenu.style.visibility;
+            submenu.style.visibility = 'hidden';
+            submenu.style.display = 'block';
+
+            const submenuWidth = submenu.offsetWidth;
+            const submenuHeight = submenu.offsetHeight;
+            const rect = item.getBoundingClientRect();
+            const spaceRight = window.innerWidth - rect.right;
+            const spaceLeft = rect.left;
+            const spaceBottom = window.innerHeight - rect.top;
+            const spaceTop = rect.bottom;
+
+            if (spaceRight < submenuWidth && spaceLeft > submenuWidth) {
+                item.classList.remove('open-right');
+                item.classList.add('open-left');
+            }
+
+            if (spaceBottom < submenuHeight && spaceTop > submenuHeight) {
+                item.classList.remove('open-down');
+                item.classList.add('open-up');
+            }
+
+            submenu.style.display = previousDisplay;
+            submenu.style.visibility = previousVisibility;
+        };
+
+        submenus.forEach(function(item) {
+            item.addEventListener('mouseenter', function() {
+                setSubmenuDirection(item);
+            });
+            item.addEventListener('focusin', function() {
+                setSubmenuDirection(item);
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            submenus.forEach(function(item) {
+                setSubmenuDirection(item);
+            });
+        });
     });
 </script>
 
