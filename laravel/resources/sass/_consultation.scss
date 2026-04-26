@@ -1,0 +1,39 @@
+.consultation-inline-card {
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.consultation-inline-card .consultation-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
+
+#consultationModal {
+    padding: 0 !important;
+}
+
+#consultationModal .modal-dialog {
+    position: fixed;
+    right: 100px;
+    bottom: 10px;
+    margin: 0;
+    max-width: 400px;
+    width: calc(100vw - 32px);
+}
+
+#consultationModal .modal-content {
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    #consultationModal .modal-dialog {
+        right: 12px;
+        bottom: 90px;
+        width: calc(100vw - 24px);
+    }
+}

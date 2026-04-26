@@ -59,7 +59,8 @@ footer a:hover {
 }
 
 #phone-contact,
-#zalo-contact {
+#zalo-contact,
+#customer-service-contact {
     position: relative;
     overflow: visible;
     border-radius: 50%;
@@ -74,7 +75,8 @@ footer a:hover {
 }
 
 #zalo-contact::after,
-#phone-contact::after {
+#phone-contact::after,
+#customer-service-contact::after {
     z-index: -1;
     content: "";
     position: absolute;
@@ -88,6 +90,11 @@ footer a:hover {
 
     /* animation tự chạy */
     animation: ripple 1.2s ease-out infinite;
+}
+
+#customer-service-contact::after,
+#customer-service-contact {
+    background: $customer-service-bg;
 }
 
 #zalo-contact::after,

@@ -37,6 +37,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/gioi-thieu', [PageController::class, 'about'])->name('about');
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
 Route::post('/lien-he', [ContactController::class, 'send'])->name('contact.send');
+Route::post('/tu-van-mien-phi', [ContactController::class, 'sendConsultation'])->name('consultation.send');
 
 // products and categories
 Route::prefix('san-pham')->name('product.')->group(function () {

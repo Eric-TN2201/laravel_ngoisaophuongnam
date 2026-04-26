@@ -204,6 +204,8 @@ return [
         'password' => env('ADMIN_ACCOUNT_PASSWORD', '123456')
     ],
 
+    'consultation_admin_email' => env('CONSULTATION_ADMIN_EMAIL', env('ADMIN_ACCOUNT_EMAIL', 'abc.bac@gmail.com')),
+
     // company name
     'company_name' => env('COMPANY_NAME', 'TSS'),
 

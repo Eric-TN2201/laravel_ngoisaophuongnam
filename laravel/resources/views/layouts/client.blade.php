@@ -27,7 +27,9 @@
     @stack('css')
 </head>
 
-<body>
+<body
+    data-consultation-errors="{{ $errors->has('consultation_name') || $errors->has('consultation_phone') || $errors->has('consultation_area') || $errors->has('consultation_type') ? '1' : '0' }}"
+    data-consultation-success="{{ session('consultation_success') ? '1' : '0' }}">
     <header>
         <x-navbar />
     </header>
@@ -38,6 +40,8 @@
 
     <x-footer />
 
+    <x-common.consultation-form mode="modal" modal-id="consultationModal" />
+
     <!-- Contact icons (always visible) -->
     <div id="contactBtns">
         <a id="phone-contact" href="tel:{{ setting('company_phone') }}" class="text-dark" title="Gọi điện">
@@ -46,6 +50,11 @@
         <a id="zalo-contact" href="{{ setting('company_zalo') }}" target="_blank" class="text-dark" title="Zalo">
             <!-- Zalo SVG icon -->
             <img src="{{ asset('images/common/zalo-icon.png') }}" alt="Zalo">
+        </a>
+
+        <a id="customer-service-contact" href="#" class="text-dark" data-toggle="modal"
+            data-target="#consultationModal" aria-label="Tư vấn miễn phí" title="Tư vấn miễn phí" role="button">
+            <img src="{{ asset('images/common/customer-service.png') }}" alt="Customer-service" width="55" height="55">
         </a>
     </div>
 
@@ -238,7 +247,9 @@
                     el.classList.add('visible');
                 });
             });
-        }, { threshold: 0.1 });
+        }, {
+            threshold: 0.1
+        });
 
         document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right').forEach(function(el) {
             observer.observe(el);

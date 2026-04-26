@@ -142,4 +142,11 @@
             </div> --}}
         </div>
     </section>
+
+    <section class="mb-3 p-3">
+        <div class="container-fix">
+            <h2 class="h4 mb-0 text-center title-line mb-4">Tư vấn miễn phí</h2>
+            <x-common.consultation-form mode="inline" title="Tư vấn miễn phí" />
+        </div>
+    </section>
 @endsection
