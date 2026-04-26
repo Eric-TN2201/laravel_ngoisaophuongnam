@@ -74,6 +74,42 @@ footer a:hover {
     line-height: 48px;
 }
 
+#phone-contact::before,
+#zalo-contact::before,
+#customer-service-contact::before {
+    content: attr(data-label);
+    position: absolute;
+    right: calc(100% + 10px);
+    top: 50%;
+    transform: translateY(-50%) translateX(6px);
+    background: rgba(33, 37, 41, 0.95);
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    white-space: nowrap;
+    padding: 4px 10px;
+    border-radius: 6px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    z-index: 1042;
+}
+
+#phone-contact:hover::before,
+#zalo-contact:hover::before,
+#customer-service-contact:hover::before,
+#phone-contact:focus::before,
+#zalo-contact:focus::before,
+#customer-service-contact:focus::before,
+#phone-contact:focus-visible::before,
+#zalo-contact:focus-visible::before,
+#customer-service-contact:focus-visible::before {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(-50%) translateX(0);
+}
+
 #zalo-contact::after,
 #phone-contact::after,
 #customer-service-contact::after {

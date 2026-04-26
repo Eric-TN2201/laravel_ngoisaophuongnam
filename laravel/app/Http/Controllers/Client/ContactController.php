@@ -40,6 +40,10 @@ class ContactController extends Controller
 
     public function sendConsultation(Request $request)
     {
+        $source = in_array($request->input('consultation_form_source'), ['modal', 'inline'], true)
+            ? $request->input('consultation_form_source')
+            : 'modal';
+
         $validated = $request->validate([
             'consultation_name' => 'required|string|max:255',
             'consultation_phone' => 'required|string|max:20',
@@ -67,6 +71,8 @@ class ContactController extends Controller
             }
         );
 
-        return back()->with('consultation_success', 'Cảm ơn bạn đã đăng ký tư vấn. Chúng tôi sẽ liên hệ sớm nhất.');
+        return back()
+            ->with('consultation_success', 'Cảm ơn bạn đã đăng ký tư vấn. Chúng tôi sẽ liên hệ sớm nhất.')
+            ->with('consultation_success_source', $source);
     }
 }

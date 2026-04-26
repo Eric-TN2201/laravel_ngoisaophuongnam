@@ -28,8 +28,9 @@
 </head>
 
 <body
-    data-consultation-errors="{{ $errors->has('consultation_name') || $errors->has('consultation_phone') || $errors->has('consultation_area') || $errors->has('consultation_type') ? '1' : '0' }}"
-    data-consultation-success="{{ session('consultation_success') ? '1' : '0' }}">
+    data-consultation-errors-modal="{{ old('consultation_form_source') === 'modal' && ($errors->has('consultation_name') || $errors->has('consultation_phone') || $errors->has('consultation_area') || $errors->has('consultation_type')) ? '1' : '0' }}"
+    data-consultation-success-modal="{{ session('consultation_success_source') === 'modal' ? '1' : '0' }}"
+    data-consultation-success-source="{{ session('consultation_success_source', '') }}">
     <header>
         <x-navbar />
     </header>
@@ -44,16 +45,19 @@
 
     <!-- Contact icons (always visible) -->
     <div id="contactBtns">
-        <a id="phone-contact" href="tel:{{ setting('company_phone') }}" class="text-dark" title="Gọi điện">
+        <a id="phone-contact" href="tel:{{ setting('company_phone') }}" class="text-dark"
+            data-label="Gọi điện">
             <img src="{{ asset('images/common/phone-icon.png') }}" alt="Phone">
         </a>
-        <a id="zalo-contact" href="{{ setting('company_zalo') }}" target="_blank" class="text-dark" title="Zalo">
+        <a id="zalo-contact" href="{{ setting('company_zalo') }}" target="_blank" class="text-dark"
+            data-label="Zalo">
             <!-- Zalo SVG icon -->
             <img src="{{ asset('images/common/zalo-icon.png') }}" alt="Zalo">
         </a>
 
         <a id="customer-service-contact" href="#" class="text-dark" data-toggle="modal"
-            data-target="#consultationModal" aria-label="Tư vấn miễn phí" title="Tư vấn miễn phí" role="button">
+            data-target="#consultationModal" aria-label="Tư vấn miễn phí" role="button"
+            data-label="Tư vấn miễn phí">
             <img src="{{ asset('images/common/customer-service.png') }}" alt="Customer-service" width="55" height="55">
         </a>
     </div>

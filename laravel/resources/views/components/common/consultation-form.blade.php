@@ -17,8 +17,9 @@
                 </div>
                 <form action="{{ route('consultation.send') }}" method="POST">
                     @csrf
+                    <input type="hidden" name="consultation_form_source" value="modal">
                     <div class="modal-body">
-                        @if (session('consultation_success'))
+                        @if (session('consultation_success') && session('consultation_success_source') === 'modal')
                             <div class="alert alert-success">{{ session('consultation_success') }}</div>
                         @endif
 
@@ -71,7 +72,8 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-                        <button type="submit" class="btn btn-success">Gửi tư vấn</button>
+                        <button type="submit" class="btn btn-success consultation-submit-btn"
+                            data-loading-text="Đang gửi...">Gửi tư vấn</button>
                     </div>
                 </form>
             </div>
@@ -80,12 +82,13 @@
 @else
     <div class="consultation-inline-card p-4 {{ $cardClass }}">
         {{-- <h3 class="consultation-title">{{ $title }}</h3> --}}
-        @if (session('consultation_success'))
+        @if (session('consultation_success') && session('consultation_success_source') === 'inline')
             <div class="alert alert-success">{{ session('consultation_success') }}</div>
         @endif
 
         <form action="{{ route('consultation.send') }}" method="POST">
             @csrf
+            <input type="hidden" name="consultation_form_source" value="inline">
             <div class="form-group">
                 <label for="consultation_name_inline">Tên <span class="text-danger">*</span></label>
                 <input type="text" class="form-control @error('consultation_name') is-invalid @enderror"
@@ -128,7 +131,9 @@
                 @enderror
             </div>
 
-            <button type="submit" class="btn btn-success mt-3">Gửi tư vấn</button>
+            <button type="submit" class="btn btn-success mt-3 consultation-submit-btn" data-loading-text="Đang gửi...">
+                Gửi tư vấn
+            </button>
         </form>
     </div>
 @endif
