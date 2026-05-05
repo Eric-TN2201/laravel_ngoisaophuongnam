@@ -33,7 +33,7 @@
 
 <div class="form-group mt-3">
     <label for="category-image">Ảnh danh mục</label>
-    <input type="file" id="category-image" name="image"
+    <input type="file" id="category-image" name="thumbnail"
         class="form-control {{ $errors->has('thumbnail') ? 'is-invalid' : '' }}" accept="image/*">
     @if (isset($category) && $category->thumbnail)
         <div class="mt-2">

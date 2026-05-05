@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body row">
                 <div class="col-12 col-lg-6">
-                    <form method="POST" action="{{ route('admin.category.store') }}">
+                    <form method="POST" action="{{ route('admin.category.store') }}" enctype="multipart/form-data">
                         @csrf
                         @include('admin.categories._form')
                     </form>

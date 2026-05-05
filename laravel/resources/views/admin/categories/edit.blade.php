@@ -10,7 +10,7 @@
         <div class="card">
             <div class="card-body row">
                 <div class="col-12 col-lg-6">
-                    <form method="POST" action="{{ route('admin.category.update', $category) }}">
+                    <form method="POST" action="{{ route('admin.category.update', $category) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         @include('admin.categories._form')

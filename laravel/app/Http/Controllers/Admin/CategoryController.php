@@ -31,13 +31,12 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data = $this->validatedData($request);
-        // dd($data);
         try {
-            Category::create([
-                'name' => $data['name'],
-                'slug' => $data['slug'],
-                'status' => $data['status'],
-            ]);
+            if ($request->hasFile('thumbnail')) {
+                $data['thumbnail'] = $request->file('thumbnail')->store('categories', 'public');
+            }
+
+            Category::create($data);
 
             return redirect()
                 ->route('admin.category.index')
@@ -67,6 +66,13 @@ class CategoryController extends Controller
 
 
         try {
+            if ($request->hasFile('thumbnail')) {
+                if ($category->thumbnail) {
+                    Storage::disk('public')->delete($category->thumbnail);
+                }
+                $data['thumbnail'] = $request->file('thumbnail')->store('categories', 'public');
+            }
+
             $category->update($data);
 
             return redirect()->route('admin.category.index')
@@ -88,6 +94,10 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         try {
+            if ($category->thumbnail) {
+                Storage::disk('public')->delete($category->thumbnail);
+            }
+
             $category->delete();
 
             return redirect()->route('admin.category.index')
@@ -114,10 +124,13 @@ class CategoryController extends Controller
                 Rule::unique('categories', 'slug')->ignore($id),
             ],
             'status' => 'required|boolean',
+            'thumbnail' => 'nullable|image|max:2048',
         ];
         $messages = [
             'name.required' => 'Vui lòng nhập tên danh mục.',
             'slug.unique'   => 'Tên danh mục đã tồn tại.',
+            'thumbnail.image' => 'Ảnh danh mục phải là định dạng hình ảnh hợp lệ.',
+            'thumbnail.max' => 'Ảnh danh mục không được lớn hơn 2MB.',
         ];
         return $request->validate($rules, $messages);
     }
