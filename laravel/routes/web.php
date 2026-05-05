@@ -33,6 +33,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+Route::get('/admin/dashboard', fn() => redirect()->route('admin.home'));
+
 // static pages
 Route::get('/gioi-thieu', [PageController::class, 'about'])->name('about');
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');

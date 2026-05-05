@@ -50,7 +50,7 @@
 
                     <div class="mt-4">
                         <x-common.button onclick="window.location='tel:{{ setting('company_phone') }}'">
-                            <i class="fas fa-phone-alt mr-1"></i> Liên hệ đặt hàng
+                            <i class="fas fa-phone-alt mr-1"></i> Liên hệ tư vấn
                         </x-common.button>
                     </div>
                 </div>
