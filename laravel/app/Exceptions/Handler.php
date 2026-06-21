@@ -42,7 +42,11 @@ class Handler extends ExceptionHandler
                 return null;
             }
 
-            if ($request->is('spn/admin/*') || $request->is('spn/admin')) {
+            $isAdminArea = ($request->is('spn/admin/*') || $request->is('spn/admin'))
+                && !$request->is('spn/admin/login')
+                && !$request->is('spn/admin/register');
+
+            if ($isAdminArea) {
                 return response()->view('errors.admin.429', [], 429);
             }
 

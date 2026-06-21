@@ -38,8 +38,8 @@ Route::get('/admin-fast-route', fn() => redirect()->route('admin.home'));
 // static pages
 Route::get('/gioi-thieu', [PageController::class, 'about'])->name('about');
 Route::get('/lien-he', [ContactController::class, 'index'])->name('contact');
-Route::post('/lien-he', [ContactController::class, 'send'])->name('contact.send');
-Route::post('/tu-van-mien-phi', [ContactController::class, 'sendConsultation'])->name('consultation.send');
+Route::post('/lien-he', [ContactController::class, 'send'])->middleware('throttle:form')->name('contact.send');
+Route::post('/tu-van-mien-phi', [ContactController::class, 'sendConsultation'])->middleware('throttle:form')->name('consultation.send');
 
 // products and categories
 Route::prefix('san-pham')->name('product.')->group(function () {
@@ -61,7 +61,8 @@ Route::prefix('dich-vu')->name('service.')->group(function () {
 });
 
 Route::prefix('/spn/admin')->name('admin.')->group(function () {
-    Auth::routes();
+    Auth::routes(['register' => false]);
+    Route::post('login', '\App\Http\Controllers\Auth\LoginController@login')->middleware('throttle:login')->name('login');
 
     Route::middleware('admin.auth')->group(function () {
         // Our Story admin page
