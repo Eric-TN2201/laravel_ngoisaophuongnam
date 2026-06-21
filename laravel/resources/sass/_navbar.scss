@@ -29,6 +29,21 @@
     max-width: calc(100% - 1rem);
 }
 
+.navbar .nav-link.dropdown-toggle,
+.dropdown-menu .dropdown-item.dropdown-toggle {
+    display: flex;
+    align-items: center;
+}
+
+.navbar .nav-link.dropdown-toggle {
+    gap: 0.35rem;
+}
+
+.dropdown-menu .dropdown-item.dropdown-toggle {
+    justify-content: space-between;
+    gap: 0.75rem;
+}
+
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus {
     background-color: $hover-bg;
@@ -132,6 +147,9 @@
 
 /* dropdown-toggle arrow styling and rotation */
 .dropdown-toggle::after {
+    flex: 0 0 auto;
+    margin-top: 0;
+    vertical-align: middle;
     transition: transform 0.3s ease;
     transform: rotate(-90deg);
 }
