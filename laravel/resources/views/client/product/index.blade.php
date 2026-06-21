@@ -22,10 +22,14 @@
                     <div class="col-6 col-md-4 col-lg-3 mb-4 fade-in-up">
                         <div class="card h-100 hover-card category-card" style="cursor:pointer;"
                             onclick="window.location='{{ route('product.category', ['category' => $category->slug]) }}'">
-                            <img src="{{ $category->thumbnail ? asset('storage/' . $category->thumbnail) : asset('images/no-image-available.jpg') }}"
-                                class="card-img-top product-thumb-img" alt="{{ $category->name }}">
-                            <div class="card-body text-center">
-                                <h5 class="card-title mb-0">{{ $category->name }}</h5>
+                            <div class="card-img-top d-flex align-items-center justify-content-center overflow-hidden bg-light"
+                                style="aspect-ratio: 1 / 1; min-height: 180px;">
+                                <img src="{{ $category->thumbnail ? asset('storage/' . $category->thumbnail) : asset('images/no-image-available.jpg') }}"
+                                    class="product-thumb-img" alt="{{ $category->name }}"
+                                    style="width: 100%; height: 100%; object-fit: contain;">
+                            </div>
+                            <div class="card-body py-3 px-2 text-center">
+                                <h5 class="card-title mb-0" title="{{ $category->name }}">{{ $category->name }}</h5>
                             </div>
                         </div>
                     </div>
