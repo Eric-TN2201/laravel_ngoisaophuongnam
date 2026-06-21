@@ -5,6 +5,8 @@
     'cardClass' => '',
 ])
 
+@php($errors = $errors ?? new \Illuminate\Support\ViewErrorBag())
+
 @if ($mode === 'modal')
     <div class="modal fade" id="{{ $modalId }}" tabindex="-1" role="dialog"
         aria-labelledby="{{ $modalId }}Label" aria-hidden="true" data-backdrop="true">
