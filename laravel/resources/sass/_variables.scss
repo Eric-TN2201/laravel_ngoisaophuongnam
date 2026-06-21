@@ -24,6 +24,7 @@ $blue-color: #2962ff;
 $white-color: #fff;
 $purple-color: #8f41e9;
 $blue-main-color: rgb(11,13,198);
+$blue-main-color-oppacity: rgb(11,13,198, .7);
 
 $nav-bg:$green-main-color;
 $hover-bg: $blue-main-color;
@@ -31,15 +32,16 @@ $hover-bg: $blue-main-color;
 $call-bg: $green-color;
 $zalo-bg: $blue-color;
 $customer-service-bg: $purple-color;
-$button-bg: $green-main-color;
-$button-hover-bg: $yellow-main-color;
+$button-bg: $blue-main-color;
+// $button-hover-bg: $yellow-main-color;
+$button-hover-bg: $blue-main-color-oppacity;
 $text-color: $white-color;
-$text-hover-color: #333;
+$text-hover-color: $white-color;
 // desktop
 // $nav-text: $color-text;
 $nav-text: $color-text;
 $nav-text-hover: $color-text-white;
 
 // mobile
-$nav-text-mobile: $color-text;
-$nav-text-hover-mobile: $yellow-main-color;
+$nav-text-mobile: $color-text-white;
+$nav-text-hover-mobile: $blue-main-color;

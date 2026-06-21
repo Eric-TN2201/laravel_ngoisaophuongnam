@@ -30,6 +30,20 @@
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 }
 
+.consultation-submit-btn {
+    background-color: $hover-bg !important;
+    border-color: $hover-bg !important;
+    color: $text-color !important;
+}
+
+.consultation-submit-btn:hover,
+.consultation-submit-btn:focus,
+.consultation-submit-btn:active {
+    background-color: $hover-bg !important;
+    border-color: $hover-bg !important;
+    filter: brightness(0.92);
+}
+
 @media (max-width: 768px) {
     #consultationModal .modal-dialog {
         right: 12px;

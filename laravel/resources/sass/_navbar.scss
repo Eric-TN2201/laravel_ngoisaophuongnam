@@ -270,7 +270,7 @@
     .dropdown-menu .dropdown-item:hover,
     .dropdown-menu .dropdown-item:focus {
         background-color: unset;
-        color: #111 !important;
+        color: $nav-text-mobile !important;
         // border-radius: 0.5rem;
     }
 

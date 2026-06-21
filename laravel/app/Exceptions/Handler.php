@@ -36,16 +36,16 @@ class Handler extends ExceptionHandler
             return response()->view('errors.client.404', [], 404);
         });
 
-        $this->renderable(function (Throwable $e, $request) {
-            if (config('app.debug')) {
-                return null;
-            }
+        // $this->renderable(function (Throwable $e, $request) {
+        //     if (config('app.debug')) {
+        //         return null;
+        //     }
 
-            if ($e instanceof NotFoundHttpException) {
-                return null;
-            }
+        //     if ($e instanceof NotFoundHttpException) {
+        //         return null;
+        //     }
 
-            return response()->view('errors.client.500', [], 500);
-        });
+        //     return response()->view('errors.client.500', [], 500);
+        // });
     }
 }
