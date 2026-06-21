@@ -17,6 +17,7 @@
                         <tr>
                             {{-- <th>ID</th> --}}
                             <th>Tên</th>
+                            <th>URL</th>
                             <th>Hình ảnh</th>
                             <th>Trạng thái</th>
                             <th>Hoạt động</th>
@@ -27,6 +28,15 @@
                             <tr>
                                 {{-- <td>{{ $banner->id }}</td> --}}
                                 <td>{{ $banner->title }}</td>
+                                <td>
+                                    @if ($banner->link)
+                                        <a href="{{ $banner->link }}" target="_blank" rel="noopener noreferrer">
+                                            {{ $banner->link }}
+                                        </a>
+                                    @else
+                                        -
+                                    @endif
+                                </td>
                                 <td><img src="{{ asset('storage/' . $banner->image) }}" width="100"></td>
                                 <td>{{ $banner->status ? 'Hoạt động' : 'Tạm dừng' }}</td>
                                 <td class="text-center">
@@ -56,10 +66,11 @@
         <script>
             $(document).ready(function() {
                 initDataTable('#banner-table', [
-                    { targets: 0, width: '20%' },
-                    { targets: 1, width: '50%' },
-                    { targets: 2, width: '20%' },
-                    { targets: 3, width: '10%', orderable: false, searchable: false }
+                    { targets: 0, width: '18%' },
+                    { targets: 1, width: '32%' },
+                    { targets: 2, width: '25%' },
+                    { targets: 3, width: '15%' },
+                    { targets: 4, width: '10%', orderable: false, searchable: false }
                 ]);
             });
         </script>

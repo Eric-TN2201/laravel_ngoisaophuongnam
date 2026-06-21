@@ -83,6 +83,7 @@ class BannerController extends Controller
     {
         $rules = [
             'title' => 'required|string|max:255',
+            'link' => 'nullable|url|max:2048',
             'image' => [
                 $id ? 'nullable' : 'required',
                 'image',
@@ -91,6 +92,7 @@ class BannerController extends Controller
         ];
         $messages = [
             'title.required' => 'Vui lòng nhập tên banner.',
+            'link.url' => 'URL không đúng định dạng.',
             'image.required' => 'Vui lòng chọn hình ảnh.',
             'image.image' => 'File phải là hình ảnh.',
             'status.required' => 'Vui lòng chọn trạng thái.',

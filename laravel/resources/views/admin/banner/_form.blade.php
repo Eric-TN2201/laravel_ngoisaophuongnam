@@ -12,6 +12,19 @@
 </div>
 
 <div class="form-group mt-3">
+    <label for="banner-link">URL</label>
+    <input type="url" id="banner-link" name="link"
+        class="form-control {{ $errors->has('link') ? 'is-invalid' : '' }}"
+        value="{{ old('link', $banner->link ?? '') }}" placeholder="https://example.com">
+
+    @if ($errors->has('link'))
+        <div class="invalid-feedback text-md">
+            {{ $errors->first('link') }}
+        </div>
+    @endif
+</div>
+
+<div class="form-group mt-3">
     <label for="banner-image">Hình ảnh</label>
     <input type="file" id="banner-image" name="image"
         class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" accept="image/*">
