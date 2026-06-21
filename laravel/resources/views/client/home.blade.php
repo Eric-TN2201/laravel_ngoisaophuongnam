@@ -9,7 +9,7 @@
             @foreach ($banners as $banner)
                 <div class="swiper-slide">
                     @if ($banner->link)
-                        <a href="{{ $banner->link }}" target="_blank" rel="noopener noreferrer" class="d-block">
+                        <a href="{{ $banner->link }}" rel="noopener noreferrer" class="d-block">
                             <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100" alt="Banner">
                         </a>
                     @else
