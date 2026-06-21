@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\TooManyRequestsHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -34,6 +35,18 @@ class Handler extends ExceptionHandler
             }
 
             return response()->view('errors.client.404', [], 404);
+        });
+
+        $this->renderable(function (TooManyRequestsHttpException $e, $request) {
+            if ($request->expectsJson()) {
+                return null;
+            }
+
+            if ($request->is('spn/admin/*') || $request->is('spn/admin')) {
+                return response()->view('errors.admin.429', [], 429);
+            }
+
+            return response()->view('errors.client.429', [], 429);
         });
 
         // $this->renderable(function (Throwable $e, $request) {
