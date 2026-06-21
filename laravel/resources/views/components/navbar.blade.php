@@ -42,7 +42,7 @@
                                         <li class="dropdown-submenu">
                                             <a class="dropdown-item dropdown-toggle{{ request()->routeIs('product.category') && request()->route('category') === $cat->slug ? ' active' : '' }}"
                                                 href="{{ route('product.category', ['category' => $cat->slug]) }}">
-                                                <span>{{ $cat->name }}</span>
+                                                <span class="dropdown-label-ellipsis">{{ $cat->name }}</span>
                                             </a>
                                             <div class="dropdown-menu">
                                                 @foreach ($activeSubCategories as $sub)
@@ -57,7 +57,7 @@
                                         <li>
                                             <a class="dropdown-item{{ request()->routeIs('product.category') && request()->route('category') === $cat->slug ? ' active' : '' }}"
                                                 href="{{ route('product.category', ['category' => $cat->slug]) }}">
-                                                <span>{{ $cat->name }}</span>
+                                                <span class="dropdown-label-ellipsis">{{ $cat->name }}</span>
                                             </a>
                                         </li>
                                     @endif

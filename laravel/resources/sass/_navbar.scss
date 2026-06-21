@@ -17,6 +17,18 @@
         color 0.3s;
 }
 
+.dropdown-menu .dropdown-item .dropdown-label-ellipsis {
+    display: block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.dropdown-menu .dropdown-item.dropdown-toggle .dropdown-label-ellipsis {
+    max-width: calc(100% - 1rem);
+}
+
 .dropdown-menu .dropdown-item:hover,
 .dropdown-menu .dropdown-item:focus {
     background-color: $hover-bg;

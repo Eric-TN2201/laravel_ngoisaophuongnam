@@ -76,6 +76,50 @@
     max-height: 300px;
     display: block;
 }
+
+.product-category-line {
+    overflow: hidden;
+    white-space: nowrap;
+    line-height: 1.4;
+    height: 1.4em;
+}
+
+.product-category-marquee {
+    display: inline-block;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: inherit;
+    vertical-align: top;
+}
+
+.product-category-marquee.is-long {
+    max-width: 100%;
+    padding-right: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: none;
+}
+
+.card.hover-card:hover .product-category-marquee.is-long {
+    max-width: none;
+    overflow: visible;
+    text-overflow: clip;
+    padding-right: 1.5rem;
+    animation: product-category-rtl-scroll 7s linear infinite;
+}
+
+@keyframes product-category-rtl-scroll {
+    from {
+        transform: translateX(0%);
+    }
+
+    to {
+        transform: translateX(-100%);
+    }
+}
+
 .about-us-title {
     padding: 12px 16px;
     background-color: $green-main-color;
@@ -215,6 +259,7 @@
 
 .news-card .card-title {
     display: -webkit-box;
+    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
