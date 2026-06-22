@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">Thông tin công ty</div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('admin.setting.update') }}">
+                        <form method="POST" action="{{ route('admin.setting.update') }}" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
 
@@ -83,6 +83,70 @@
                                     placeholder="https://zalo.me/0123456789">
                                 @if ($errors->has('company_zalo'))
                                     <div class="invalid-feedback">{{ $errors->first('company_zalo') }}</div>
+                                @endif
+                            </div>
+
+                            <hr class="my-4">
+                            <h5 class="mb-3">Video Banner Trang Chủ</h5>
+
+                            <div class="form-group">
+                                <label for="home_banner_media_type">Loại hiển thị</label>
+                                <select id="home_banner_media_type" name="home_banner_media_type"
+                                    class="form-control {{ $errors->has('home_banner_media_type') ? 'is-invalid' : '' }}">
+                                    <option value="video"
+                                        {{ old('home_banner_media_type', $settings['home_banner_media_type'] ?? 'video') === 'video' ? 'selected' : '' }}>
+                                        Video
+                                    </option>
+                                    <option value="image"
+                                        {{ old('home_banner_media_type', $settings['home_banner_media_type'] ?? 'video') === 'image' ? 'selected' : '' }}>
+                                        Hình ảnh
+                                    </option>
+                                </select>
+                                @if ($errors->has('home_banner_media_type'))
+                                    <div class="invalid-feedback">{{ $errors->first('home_banner_media_type') }}</div>
+                                @endif
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label for="home_banner_media_link">Link (tuỳ chọn)</label>
+                                <input type="url" id="home_banner_media_link" name="home_banner_media_link"
+                                    class="form-control {{ $errors->has('home_banner_media_link') ? 'is-invalid' : '' }}"
+                                    value="{{ old('home_banner_media_link', $settings['home_banner_media_link'] ?? '') }}"
+                                    placeholder="https://example.com">
+                                @if ($errors->has('home_banner_media_link'))
+                                    <div class="invalid-feedback">{{ $errors->first('home_banner_media_link') }}</div>
+                                @endif
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label for="home_banner_media_image">Ảnh banner (khi chọn Hình ảnh)</label>
+                                <input type="file" id="home_banner_media_image" name="home_banner_media_image"
+                                    class="form-control {{ $errors->has('home_banner_media_image') ? 'is-invalid' : '' }}"
+                                    accept="image/*">
+                                @if (!empty($settings['home_banner_media_image']))
+                                    <div class="mt-2">
+                                        <img src="{{ Storage::url($settings['home_banner_media_image']) }}" width="220"
+                                            style="max-width:100%;height:auto;object-fit:cover;">
+                                    </div>
+                                @endif
+                                @if ($errors->has('home_banner_media_image'))
+                                    <div class="invalid-feedback">{{ $errors->first('home_banner_media_image') }}</div>
+                                @endif
+                            </div>
+
+                            <div class="form-group mt-3">
+                                <label for="home_banner_media_video">Video banner (khi chọn Video)</label>
+                                <input type="file" id="home_banner_media_video" name="home_banner_media_video"
+                                    class="form-control {{ $errors->has('home_banner_media_video') ? 'is-invalid' : '' }}"
+                                    accept="video/mp4,video/webm,video/ogg">
+                                @if (!empty($settings['home_banner_media_video']))
+                                    <div class="mt-2">
+                                        <video src="{{ Storage::url($settings['home_banner_media_video']) }}" width="300"
+                                            controls style="max-width:100%;height:auto;"></video>
+                                    </div>
+                                @endif
+                                @if ($errors->has('home_banner_media_video'))
+                                    <div class="invalid-feedback">{{ $errors->first('home_banner_media_video') }}</div>
                                 @endif
                             </div>
 

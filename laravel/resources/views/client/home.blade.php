@@ -8,12 +8,33 @@
         <div class="swiper-wrapper">
             @foreach ($banners as $banner)
                 <div class="swiper-slide">
+                    @php
+                        $bannerExt = strtolower(pathinfo((string) $banner->image, PATHINFO_EXTENSION));
+                        $isVideoBanner = in_array($bannerExt, ['mp4', 'webm', 'ogg'], true);
+                    @endphp
                     @if ($banner->link)
                         <a href="{{ $banner->link }}" rel="noopener noreferrer" class="d-block">
-                            <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100" alt="Banner">
+                            @if ($isVideoBanner)
+                                <video autoplay loop muted playsinline class="d-block w-100">
+                                    <source src="{{ asset('storage/' . $banner->image) }}"
+                                        type="video/{{ $bannerExt === 'ogg' ? 'ogg' : $bannerExt }}">
+                                    Trình duyệt của bạn không hỗ trợ video.
+                                </video>
+                            @else
+                                <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100"
+                                    alt="Banner">
+                            @endif
                         </a>
                     @else
-                        <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100" alt="Banner">
+                        @if ($isVideoBanner)
+                            <video autoplay loop muted playsinline class="d-block w-100">
+                                <source src="{{ asset('storage/' . $banner->image) }}"
+                                    type="video/{{ $bannerExt === 'ogg' ? 'ogg' : $bannerExt }}">
+                                Trình duyệt của bạn không hỗ trợ video.
+                            </video>
+                        @else
+                            <img src="{{ asset('storage/' . $banner->image) }}" class="d-block w-100" alt="Banner">
+                        @endif
                     @endif
                 </div>
             @endforeach
@@ -47,13 +68,39 @@
 
     {{-- Video Banner --}}
     <section class="banner mb-3">
-        <div class="ratio ratio-16x9" style="margin: 0 auto;">
-            <video autoplay loop muted playsinline poster="{{ asset('images/video-banner-poster.jpg') }}"
-                style="width:100%;height:auto;">
-                <source src="{{ asset('images/Diet-sau-chan-dong.mp4') }}" type="video/mp4">
-                Trình duyệt của bạn không hỗ trợ video.
-            </video>
-        </div>
+        @php
+            $homeMediaType = setting('home_banner_media_type', 'video');
+            $homeMediaImage = setting('home_banner_media_image');
+            $homeMediaVideo = setting('home_banner_media_video');
+            $homeMediaLink = setting('home_banner_media_link');
+            $homeMediaVideoExt = strtolower(pathinfo((string) $homeMediaVideo, PATHINFO_EXTENSION));
+            $homeMediaVideoMime = in_array($homeMediaVideoExt, ['webm', 'ogg'], true)
+                ? 'video/' . $homeMediaVideoExt
+                : 'video/mp4';
+        @endphp
+        <div class="ratio ratio-16x9" style="margin: 0 auto; overflow: hidden;">
+            @if ($homeMediaType === 'image' && $homeMediaImage)
+                @if ($homeMediaLink)
+                    <a href="{{ $homeMediaLink }}" rel="noopener noreferrer" class="d-block h-100">
+                        <img src="{{ asset('storage/' . $homeMediaImage) }}" alt="Banner"
+                            style="width:100%;height:100%;object-fit:cover;">
+                    </a>
+                @else
+                    <img src="{{ asset('storage/' . $homeMediaImage) }}" alt="Banner"
+                        style="width:100%;height:100%;object-fit:cover;">
+                @endif
+            @elseif ($homeMediaVideo)
+                <video autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;">
+                    <source src="{{ asset('storage/' . $homeMediaVideo) }}" type="{{ $homeMediaVideoMime }}">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            @else
+                <video autoplay loop muted playsinline poster="{{ asset('images/video-banner-poster.jpg') }}"
+                    style="width:100%;height:100%;object-fit:cover;">
+                    <source src="{{ asset('images/Diet-sau-chan-dong.mp4') }}" type="video/mp4">
+                    Trình duyệt của bạn không hỗ trợ video.
+                </video>
+            @endif
         </div>
     </section>
 

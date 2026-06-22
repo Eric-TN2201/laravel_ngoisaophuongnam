@@ -8,8 +8,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // 4 banners (assume Banner model or static for now)
-        $banners = \App\Models\Banner::orderBy('order')->take(4)->get();
+        $banners = \App\Models\Banner::where('status', 1)->orderBy('order')->get();
 
         // 8 promote products (status=1)
         $promoteProducts = \App\Models\Product::where('status', 1)->latest()->take(8)->get();

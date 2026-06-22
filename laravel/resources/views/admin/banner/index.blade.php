@@ -26,6 +26,10 @@
                     <tbody>
                         @foreach ($banners as $banner)
                             <tr>
+                                @php
+                                    $bannerExt = strtolower(pathinfo((string) $banner->image, PATHINFO_EXTENSION));
+                                    $isVideoBanner = in_array($bannerExt, ['mp4', 'webm', 'ogg'], true);
+                                @endphp
                                 {{-- <td>{{ $banner->id }}</td> --}}
                                 <td>{{ $banner->title }}</td>
                                 <td>
@@ -37,7 +41,13 @@
                                         -
                                     @endif
                                 </td>
-                                <td><img src="{{ asset('storage/' . $banner->image) }}" width="100"></td>
+                                <td>
+                                    @if ($isVideoBanner)
+                                        <video src="{{ asset('storage/' . $banner->image) }}" width="150" height="90" controls></video>
+                                    @else
+                                        <img src="{{ asset('storage/' . $banner->image) }}" width="100">
+                                    @endif
+                                </td>
                                 <td>{{ $banner->status ? 'Hoạt động' : 'Tạm dừng' }}</td>
                                 <td class="text-center">
                                     <a href="{{ route('admin.banner.edit', $banner) }}" class="text-primary mr-2" title="Sửa"><i class="fa fa-pencil-square-o"></i></a>

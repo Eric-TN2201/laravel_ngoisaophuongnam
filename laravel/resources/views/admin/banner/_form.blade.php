@@ -25,13 +25,22 @@
 </div>
 
 <div class="form-group mt-3">
-    <label for="banner-image">Hình ảnh</label>
+    <label for="banner-image">Hình ảnh / video</label>
     <input type="file" id="banner-image" name="image"
-        class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" accept="image/*">
+        class="form-control {{ $errors->has('image') ? 'is-invalid' : '' }}" accept="image/*,video/mp4,video/webm,video/ogg">
 
     @if (isset($banner) && $banner->image)
+        @php
+            $bannerExt = strtolower(pathinfo((string) $banner->image, PATHINFO_EXTENSION));
+            $isVideoBanner = in_array($bannerExt, ['mp4', 'webm', 'ogg'], true);
+        @endphp
         <div class="mt-2">
-            <img src="{{ Storage::url($banner->image) }}" width="120" height="120" style="object-fit: cover;">
+            @if ($isVideoBanner)
+                <video src="{{ Storage::url($banner->image) }}" width="160" height="120" controls
+                    style="object-fit: cover;"></video>
+            @else
+                <img src="{{ Storage::url($banner->image) }}" width="120" height="120" style="object-fit: cover;">
+            @endif
         </div>
     @endif
 

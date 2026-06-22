@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Setting;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SettingController extends Controller
 {
@@ -16,6 +17,10 @@ class SettingController extends Controller
         'company_email',
         'company_facebook',
         'company_zalo',
+        'home_banner_media_type',
+        'home_banner_media_image',
+        'home_banner_media_video',
+        'home_banner_media_link',
     ];
 
     public function edit()
@@ -38,7 +43,27 @@ class SettingController extends Controller
             'company_email'            => 'nullable|string|email|max:255',
             'company_facebook'         => 'nullable|string|max:255',
             'company_zalo'             => 'nullable|string|max:255',
+            'home_banner_media_type'   => 'nullable|in:image,video',
+            'home_banner_media_link'   => 'nullable|url|max:2048',
+            'home_banner_media_image'  => 'nullable|image|max:51200',
+            'home_banner_media_video'  => 'nullable|mimetypes:video/mp4,video/webm,video/ogg|max:51200',
         ]);
+
+        if ($request->hasFile('home_banner_media_image')) {
+            $oldImage = Setting::get('home_banner_media_image');
+            if ($oldImage) {
+                Storage::disk('public')->delete($oldImage);
+            }
+            $data['home_banner_media_image'] = $request->file('home_banner_media_image')->store('settings', 'public');
+        }
+
+        if ($request->hasFile('home_banner_media_video')) {
+            $oldVideo = Setting::get('home_banner_media_video');
+            if ($oldVideo) {
+                Storage::disk('public')->delete($oldVideo);
+            }
+            $data['home_banner_media_video'] = $request->file('home_banner_media_video')->store('settings', 'public');
+        }
 
         Setting::setMany($data);
 

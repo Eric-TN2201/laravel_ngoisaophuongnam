@@ -8,8 +8,6 @@ use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
-use Illuminate\Validation\Rule;
 use Throwable;
 
 
@@ -86,15 +84,18 @@ class BannerController extends Controller
             'link' => 'nullable|url|max:2048',
             'image' => [
                 $id ? 'nullable' : 'required',
-                'image',
+                'file',
+                'mimetypes:image/jpeg,image/png,image/webp,image/gif,video/mp4,video/webm,video/ogg',
+                'max:51200',
             ],
             'status' => 'required|boolean',
         ];
         $messages = [
             'title.required' => 'Vui lòng nhập tên banner.',
             'link.url' => 'URL không đúng định dạng.',
-            'image.required' => 'Vui lòng chọn hình ảnh.',
-            'image.image' => 'File phải là hình ảnh.',
+            'image.required' => 'Vui lòng chọn hình ảnh hoặc video.',
+            'image.mimetypes' => 'File phải là hình ảnh hoặc video (mp4/webm/ogg).',
+            'image.max' => 'File không được vượt quá 50MB.',
             'status.required' => 'Vui lòng chọn trạng thái.',
         ];
         return $request->validate($rules, $messages);
