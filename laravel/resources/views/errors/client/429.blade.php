@@ -1,3 +1,4 @@
+@section('seo_robots', 'noindex')
 @extends('layouts.client')
 
 @section('title', '429 - Quá nhiều yêu cầu')

@@ -1,3 +1,4 @@
+@section('seo_robots', 'noindex')
 @extends('layouts.client')
 
 @section('title', '500 - Lỗi hệ thống')

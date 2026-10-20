@@ -15,6 +15,7 @@ class NewsController extends Controller
 
     public function show(News $news)
     {
+        abort_unless($news->status == 1, 404);
         $latestNews = News::posted()
             ->where('id', '!=', $news->id)
             ->latest()

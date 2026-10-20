@@ -91,6 +91,8 @@ class ServiceController extends Controller
     {
         return $request->validate([
             'title' => 'required|string|max:255',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
             'description' => 'nullable|string',
             'image' => 'nullable|image|max:2048',
             'status' => 'required',

@@ -14,6 +14,8 @@ class AdminAuth
             return redirect()->route('admin.login');
         }
 
+        abort_unless($request->user()->role === 'admin', 403);
+
         return $next($request);
     }
 }

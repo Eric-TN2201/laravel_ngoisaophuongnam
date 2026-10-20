@@ -11,13 +11,13 @@ class HomeController extends Controller
         $banners = \App\Models\Banner::where('status', 1)->orderBy('order')->get();
 
         // 8 promote products (status=1)
-        $promoteProducts = \App\Models\Product::where('status', 1)->latest()->take(8)->get();
+        $promoteProducts = \App\Models\Product::visible()->latest()->take(8)->get();
 
         // Our story
         $story = optional(\App\Models\Story::first())->content;
 
         // All categories with products (max 8 per category)
-        $categories = \App\Models\Category::with(['products' => function($q){ $q->where('status',1)->latest()->take(8); }])->get();
+        $categories = \App\Models\Category::where('status', 1)->with(['products' => function($q){ $q->visible()->latest()->take(8); }])->get();
 
         // Hot news (status=posted, latest, max 6)
         $hotNews = \App\Models\News::posted()->latest()->take(1)->get();

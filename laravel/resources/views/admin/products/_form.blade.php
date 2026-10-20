@@ -206,33 +206,7 @@
     @endif
 </div>
 
-<hr class="my-4">
-
-<h5 class="mb-3">SEO</h5>
-
-<div class="form-group">
-    <label for="product-meta-title">Meta Title</label>
-    <input type="text" id="product-meta-title" name="meta_title"
-        class="form-control {{ $errors->has('meta_title') ? 'is-invalid' : '' }}"
-        value="{{ old('meta_title', $product->meta_title ?? '') }}">
-
-    @if ($errors->has('meta_title'))
-        <div class="invalid-feedback text-md">{{ $errors->first('meta_title') }}</div>
-    @endif
-</div>
-
-<div class="form-group mt-3">
-    <label for="product-meta-description">Meta Description</label>
-    <textarea id="product-meta-description" name="meta_description"
-        class="form-control
-        {{ $errors->has('meta_description') ? 'is-invalid' : '' }}" rows="3">{{ old('meta_description', $product->meta_description ?? '') }}</textarea>
-
-    @if ($errors->has('meta_description'))
-        <div class="invalid-feedback text-md">
-            {{ $errors->first('meta_description') }}
-        </div>
-    @endif
-</div>
+@include('admin.partials.seo-fields', ['seoRecord' => $product ?? null])
 
 <div class="mt-4 mb-3">
     <button type="submit" class="btn btn-primary">Lưu</button>

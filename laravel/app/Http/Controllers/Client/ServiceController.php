@@ -15,6 +15,7 @@ class ServiceController extends Controller
 
     public function show(Service $service)
     {
+        abort_unless($service->status == 1, 404);
         return view('client.service.show', compact('service'));
     }
 }

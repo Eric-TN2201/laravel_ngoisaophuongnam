@@ -1,4 +1,5 @@
 @extends('layouts.client')
+@section('seo_robots', 'noindex')
 
 @section('title', '404 - Không tìm thấy trang')
 

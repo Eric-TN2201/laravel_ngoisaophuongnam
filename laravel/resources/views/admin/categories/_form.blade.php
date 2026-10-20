@@ -47,6 +47,8 @@
         </div>
     @endif
 </div>
+@include('admin.partials.seo-fields', ['seoRecord' => $category ?? null])
+
 <div>
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a href="{{ route('admin.category.index') }}" class="text-primary ml-2">Trở lại</a>

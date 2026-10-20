@@ -300,6 +300,7 @@ return [
     */
 
     'menu' => [
+        ['text' => 'SEO website', 'route' => 'admin.seo.edit', 'icon' => 'fas fa-search'],
         // Navbar items:
         [
             'type' => 'navbar-search',

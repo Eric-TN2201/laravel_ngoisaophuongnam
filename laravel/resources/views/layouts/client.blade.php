@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ setting('company_name', config('app.name')) }}</title>
+    @include('partials.seo')
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ asset('images/common/logo.png') }}">

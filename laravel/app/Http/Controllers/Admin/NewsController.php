@@ -157,6 +157,8 @@ class NewsController extends Controller
     {
         $rules = [
             'title' => 'required|string|max:255',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
             'banner' => 'nullable|image|max:2048',
             'description' => 'nullable|string',
             'address' => 'nullable|string|max:255',

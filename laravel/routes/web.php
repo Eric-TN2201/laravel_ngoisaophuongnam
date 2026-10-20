@@ -32,6 +32,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/sitemap.xml', [\App\Http\Controllers\Client\SitemapController::class, 'index'])->name('sitemap');
+Route::get('/robots.txt', [\App\Http\Controllers\Client\SitemapController::class, 'robots'])->name('robots');
 
 Route::get('/admin-fast-route', fn() => redirect()->route('admin.home'));
 
@@ -65,6 +67,9 @@ Route::prefix('/spn/admin')->name('admin.')->group(function () {
     Route::post('login', '\App\Http\Controllers\Auth\LoginController@login')->middleware('throttle:login')->name('login');
 
     Route::middleware('admin.auth')->group(function () {
+        Route::get('seo', [\App\Http\Controllers\Admin\SeoController::class, 'edit'])->name('seo.edit');
+        Route::put('seo', [\App\Http\Controllers\Admin\SeoController::class, 'update'])->name('seo.update');
+        Route::post('seo/preview', [\App\Http\Controllers\Admin\SeoController::class, 'preview'])->name('seo.preview');
         // Our Story admin page
         Route::get('loi-gioi-thieu', [StoryController::class, 'edit'])->name('story.edit');
         Route::post('loi-gioi-thieu', [StoryController::class, 'update'])->name('story.update');

@@ -83,6 +83,8 @@
     @endif
 </div>
 
+@include('admin.partials.seo-fields', ['seoRecord' => $news ?? null])
+
 <div class="mt-4 mb-3">
     <button type="submit" class="btn btn-primary">Lưu</button>
     <a href="{{ route('admin.news.index') }}" class="text-primary ml-2">Trở lại</a>

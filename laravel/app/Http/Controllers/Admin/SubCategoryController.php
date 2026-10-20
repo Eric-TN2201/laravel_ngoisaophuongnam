@@ -29,12 +29,7 @@ class SubCategoryController extends Controller
     {
         $data = $this->validatedData($request);
         try {
-            SubCategory::create([
-                'category_id' => $data['category_id'],
-                'name' => $data['name'],
-                'slug' => $data['slug'],
-                'status' => $data['status'],
-            ]);
+            SubCategory::create($data);
 
             return redirect()
                 ->route('admin.sub-category.index')
@@ -99,6 +94,8 @@ class SubCategoryController extends Controller
         $rules = [
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
+            'meta_title' => 'nullable|string|max:255',
+            'meta_description' => 'nullable|string|max:500',
             'slug' => [
                 'string',
                 Rule::unique('sub_categories', 'slug')->ignore($id),

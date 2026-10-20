@@ -42,14 +42,6 @@ class ProductController extends Controller
                 $data['sub_category_id'] = null;
             }
 
-            if(!isset($data['meta_title'])){
-                $data['meta_title'] = $data['name'] . ' - ' . setting('company_name', config('app.name'));
-            }
-
-            if(!isset($data['meta_description'])){
-                $data['meta_description'] = $data['name'] . ' - ' . setting('company_name', config('app.name'));
-            }
-
             Product::create($data);
 
             return redirect()->route('admin.product.index')
@@ -85,14 +77,6 @@ class ProductController extends Controller
 
             if (isset($data['sub_category_id']) && $data['sub_category_id'] === '') {
                 $data['sub_category_id'] = null;
-            }
-
-            if(!isset($data['meta_title'])){
-                $data['meta_title'] = $data['name'] . ' - ' . setting('company_name', config('app.name'));
-            }
-
-            if(!isset($data['meta_description'])){
-                $data['meta_description'] = $data['name'] . ' - ' . setting('company_name', config('app.name'));
             }
 
             $product->update($data);

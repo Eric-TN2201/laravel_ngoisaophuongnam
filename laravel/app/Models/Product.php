@@ -7,6 +7,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
+    public function scopeVisible($query)
+    {
+        return $query->where('status', 1)
+            ->whereHas('category', fn ($category) => $category->where('status', 1))
+            ->where(function ($query) {
+                $query->whereNull('sub_category_id')
+                    ->orWhereHas('subCategory', fn ($subCategory) => $subCategory
+                        ->where('status', 1)
+                        ->whereColumn('sub_categories.category_id', 'products.category_id'));
+            });
+    }
+
     protected $fillable = [
         'sub_category_id',
         'category_id',
